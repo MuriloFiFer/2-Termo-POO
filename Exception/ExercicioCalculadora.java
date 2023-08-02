@@ -6,6 +6,8 @@ public class ExercicioCalculadora {
 
     private static final JOptionPane OptionPane = null;
 
+   
+
     public static void main(String[] args) {
         boolean rodando = true;
         String calc[] = { "Soma", "Subtração", "Divisão", "Multiplicação", "Sair" };
@@ -33,16 +35,15 @@ public class ExercicioCalculadora {
                     rodando = false;
                 }
 
-            } catch (NumberFormatException erro1) {
-                JOptionPane.showMessageDialog(null, "Erro - Valor digitado não é um inteiro"
-                        + "\nDigite novamente");
-            } catch (ArithmeticException erro2) {
-                JOptionPane.showMessageDialog(null, "Erro - não Dividirás por Zero!!!"
-                        + "\nDigite novamente");
-            } catch (Exception erro2) {
-                JOptionPane.showMessageDialog(null, "Aconteceu um erro"
-                        + "\nDigite novamente");
-                    }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Erro - Valor digitado não é um inteiro");
+            } catch (ArithmeticException e) {
+                JOptionPane.showMessageDialog(null, "Erro - não Dividirás por Zero!!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Aconteceu um erro");
+            } finally {
+                JOptionPane.showMessageDialog(null, "Tente novamente");
+            }
         }
     }
 }

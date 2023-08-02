@@ -1,9 +1,13 @@
 package Exception;
 
-import java.util.Scanner;
+
 
 import javax.swing.JOptionPane;
-
+import java.util.Scanner;
+/**
+* Classe utilizada para demonstrar o uso da palavra chave throw,
+* utilizada quando queremos lançar uma exceção.
+*/
 public class ExemploTryCatch {
     
 
