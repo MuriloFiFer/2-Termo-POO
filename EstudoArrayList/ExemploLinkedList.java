@@ -1,4 +1,4 @@
-package EstudoLinkedList;
+package EstudoArrayList;
 
 import java.util.LinkedList;
 
