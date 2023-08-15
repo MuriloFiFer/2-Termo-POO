@@ -48,7 +48,7 @@ public class Carros {
     }
     //método próprio
     public String imprimirLN(){ //listar
-        String imprimir = marca+" "+modelo+" "+ano+" "+cor+" \n";
+        String imprimir = " "+marca+" "+modelo+" "+ano+" "+cor+" \n";
         return imprimir;
     }
     public void imprimir(){ //consultar
