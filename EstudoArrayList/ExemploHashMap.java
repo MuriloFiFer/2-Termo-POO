@@ -21,8 +21,8 @@ public class ExemploHashMap {
     }
 
     public void nome(){
-        pessoasIdade.put("Maria");
-        pessoasIdade.put("João");
+        pessoasIdade.put("Maria", 0);
+        pessoasIdade.put("João", 0);
         for (String nome: pessoasIdade.keySet()){
             JOptionPane.showMessageDialog(null,"Nome: "+nome+", "+pessoasIdade.get(nome));
         }

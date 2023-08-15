@@ -1,3 +1,7 @@
+import java.util.HashMap;
+
+import javax.swing.JOptionPane;
+
 public class Carros {
     //Atributos
     String marca;
@@ -6,14 +10,17 @@ public class Carros {
     String cor;
     //métodos
     //Construtor(2 cheio, vazio)
-    public Carros(String marca, String modelo, String ano, String cor) {
+    //Construnor cheio
+    public Carros(String marca, String modelo, String ano, String cor){ // String placaCar) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.cor = cor;
     }
+    //construtor vazio
     public Carros() {
     }
+    //métodos padrões
     //getters abd setters
     public String getMarca() {
         return marca;
@@ -39,6 +46,11 @@ public class Carros {
     public void setCor(String cor) {
         this.cor = cor;
     }
-    
-
+    //método próprio
+    public String imprimirLN(){ //listar
+        String imprimir = marca+" "+modelo+" "+ano+" "+cor+" \n";
+        return imprimir;
+    }
+    public void imprimir(){ //consultar
+        JOptionPane.showMessageDialog(null,"Marca:"+marca+"\nModelo:"+modelo+"\nAno:"+ano+"\nCor:"+cor);    }
 }
