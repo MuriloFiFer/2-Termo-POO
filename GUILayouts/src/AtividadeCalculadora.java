@@ -1,102 +1,52 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class AtividadeCalculadora extends JFrame {
-    private JTextField textField;
-    private double primeiroNumero = 0;
-    private String operacao = "";
-    private boolean novoNumero = true;
+public class AtividadeCalculadora {
+    public AtividadeCalculadora() {
+        //Construir o Layout de uma Calculadora
+        //JFrame é a janela principal
+        JFrame janelaP = new JFrame("Layout Calculadora");
+        //criando o Border e mudando layout do JFrame para Border
+         BorderLayout border = new BorderLayout();
+         janelaP.setLayout(border);
+         //criando 2 paineis (painelV-isual) (painelB-otoes)
+         JPanel painelV = new JPanel();
+         JPanel painelB = new JPanel();
+         //setando posições dos paineis com Border.
+         janelaP.getContentPane().add(painelB, BorderLayout.CENTER);
+         janelaP.getContentPane().add(painelV, BorderLayout.NORTH);
+         //adicionar o textFiled no PainelV
+         JTextField caixa1 = new JTextField(25);
+         painelV.add(caixa1);
 
-    public void CalculadoraComClear() {
-        setTitle("Calculadora");
-        setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel();
-        painel.setLayout(new GridLayout(5, 4));
-
-        textField = new JTextField();
-        textField.setEditable(false);
-        textField.setFont(new Font("Arial", Font.PLAIN, 24));
-        textField.setHorizontalAlignment(JTextField.RIGHT);
-
-        painel.add(textField);
-
-        String[] botoes = {
-            "7", "8", "9", "/",
-            "4", "5", "6", "*",
-            "1", "2", "3", "-",
-            "0", ".", "=", "+",
-            "C"  // Botão Clear
-        };
-
-        for (String btnText : botoes) {
-            JButton botao = new JButton(btnText);
-            botao.setFont(new Font("Arial", Font.PLAIN, 18));
-            botao.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    botaoClicado(btnText);
-                }
-            });
-            painel.add(botao);
+   
+     
+        //JPanel é a janela interna dentro do JFrame
+         JPanel painelA = new JPanel();
+           painelA.add(new JLabel("Nº de botões"));
+     
+        janelaP.getContentPane().add(painelB);
+        //Set Layout do JPanel
+        GridLayout grid = new GridLayout(4,4); // criando grid e setando para 4x4 
+        painelB.setLayout(grid);
+        //Vetor com os textos dos Botões
+        String texBotoes[]={"C","9","8","7","/","6","5","4","*","3","2","1","-","+","0","="};
+        for (int i = 0; i < texBotoes.length; i++) {
+            painelB.add(new JButton(texBotoes[i]));
         }
+       
 
-        add(painel);
-        setVisible(true);
+          //set do Frame (janelaP)
+          janelaP.setBounds(500,500,500,500);
+          janelaP.setDefaultCloseOperation(2); //conf para fechar a janela e interromper o programa
+          janelaP.setVisible(true);
+
+
     }
-
-    private void botaoClicado(String texto) {
-        if (novoNumero) {
-            textField.setText("");
-            novoNumero = false;
-        }
-
-        if (texto.matches("[0-9.]")) {
-            textField.setText(textField.getText() + texto);
-        } else if (texto.matches("[-+*/]")) {
-            calcular();
-            operacao = texto;
-        } else if (texto.equals("=")) {
-            calcular();
-            operacao = "";
-        } else if (texto.equals("C")) {
-            textField.setText("");
-            primeiroNumero = 0;
-            operacao = "";
-        }
-    }
-
-    private void calcular() {
-        double segundoNumero = Double.parseDouble(textField.getText());
-
-        switch (operacao) {
-            case "+":
-                primeiroNumero += segundoNumero;
-                break;
-            case "-":
-                primeiroNumero -= segundoNumero;
-                break;
-            case "*":
-                primeiroNumero *= segundoNumero;
-                break;
-            case "/":
-                if (segundoNumero != 0) {
-                    primeiroNumero /= segundoNumero;
-                } else {
-                    textField.setText("Erro");
-                    return;
-                }
-                break;
-        }
-
-        textField.setText(Double.toString(primeiroNumero));
-        novoNumero = true;
-
-    
-    }
-
-  
 }

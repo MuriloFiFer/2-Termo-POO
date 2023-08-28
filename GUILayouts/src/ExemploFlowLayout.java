@@ -9,6 +9,8 @@ public class ExemploFlowLayout {
     public ExemploFlowLayout() {
         //criar uma janela do tipo frame
         JFrame janela1 = new JFrame("Janela FlowLayout");
+        //Layout da Jframe padrão é GridLayout
+        //Alterar para FlowLayout
         //Chamei o Layout
         FlowLayout flow = new FlowLayout();
         janela1.setLayout(flow);  //Atribui o layout
@@ -18,13 +20,16 @@ public class ExemploFlowLayout {
         janela1.add(campoTexto);
         JButton enviar = new JButton("Enviar");
         janela1.add(enviar);
-        enviar.addActionListener(null);         
+        //action ao botão (ação)
+          
         enviar.addActionListener(e ->{
             int valor = Integer.parseInt(campoTexto.getText());
             for (int i = 0; i < valor; i++) {
-                janela1.add(new JButton(""+i+1));
+                janela1.add(new JButton(""+i));
             }
             janela1.pack();
+            janela1.setVisible(true);
+   
 
         });
 
