@@ -2,7 +2,6 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,40 +20,38 @@ public class Calculadora1 {
          //criar painel SC para incluir 0,-,= nele
          JPanel painelSC = new JPanel();
 
-         JPanel painelS = new JPanel();
-         JPanel painelS2 = new JPanel();
+      
          
          //setando posições dos paineis com Border.
+         //painelN = Caixa de texto (NORTH)
         janelaP.getContentPane().add(painelN, BorderLayout.NORTH); 
-        janelaP.getContentPane().add(painelC, BorderLayout.CENTER);                   
-        janelaP.getContentPane().add(painelSC, BorderLayout.SOUTH);
-    
+        //painelC = Botões de numeros de 7 á 3 com /, *; +;
+        janelaP.getContentPane().add(painelC, BorderLayout.CENTER); 
+        //painelSC = Botões de numero 0, -, =, "Limpar(C)";                  
+        janelaP.getContentPane().add(painelSC, BorderLayout.SOUTH);   
 
          
-         //adicionar o textFiled no painelN
+         //adicionado o textFiled no painelN  (Norte) caixa de texto)
          JTextField caixa1 = new JTextField(25);
          painelN.add(caixa1);
-
-
-   
+ 
      
-        //JPanel é a janela interna dentro do JFrame
-                  
-     
-    
-      
-      
         //Set Layout do JPanel
-        GridLayout grid = new GridLayout(3,4); // 
-        painelC.setLayout(grid);
+        //set do painelC, setando numero de linhas e colunas
+        GridLayout grid1 = new GridLayout(3,4); // 
+        painelC.setLayout(grid1);
         String texBotoes[]={"7","8","9","/","4","5","6","*","1","2","3","+"};
        
+        //set do Layout do painelSC(grid2 e grid3)
+        //nessa etapa foi necessario dividir o painelSC em 2x, "Center" e "South".
+        //1º grid do painelSC "grid2" contendo botão 0,-;
         GridLayout grid2 = new GridLayout(2,2); // 
         painelSC.setLayout(grid2);
         String textBotoes2[]={"0","-",};
-         GridLayout grid3 = new GridLayout(2,2); // 
+        //2º Layout do painelSC "grid3" contendo botão =, Limpar(C);
+         GridLayout grid3 = new GridLayout(2,1); // 
         painelSC.setLayout(grid3);
-        String textBotoes3[]={"="};
+        String textBotoes3[]={"=","Limpar(c)"};
 
 
         
@@ -75,7 +72,9 @@ public class Calculadora1 {
      
 
           //set do Frame (janelaP)
-          janelaP.setBounds(500,500,500,500);
+          janelaP.setBounds(500,500,250,480);
+          
+
           janelaP.setDefaultCloseOperation(2); //conf para fechar a janela e interromper o programa
           janelaP.setVisible(true);
           
