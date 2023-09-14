@@ -14,7 +14,7 @@ public class Calculadora1 {
            //Construir o Layout de uma Calculadora
         //JFrame é a janela principal
         JFrame janelaP = new JFrame("Layout Calculadora");
-        janelaP.getContentPane().setBackground(Color.RED); 
+      
 
     
 
@@ -55,11 +55,11 @@ public class Calculadora1 {
         //set do Layout do painelSC(grid2 e grid3)
         //nessa etapa foi necessario dividir o painelSC em 2x, "Center" e "South".
         //1º grid do painelSC "grid2" contendo botão 0,-;
-        GridLayout grid2 = new GridLayout(2,2); // 
+        GridLayout grid2 = new GridLayout(1,2); // 
         painelSC.setLayout(grid2);
         String textBotoes2[]={"0","-",};
         //2º Layout do painelSC "grid3" contendo botão =, Limpar(C);
-         GridLayout grid3 = new GridLayout(2,1); // 
+         GridLayout grid3 = new GridLayout(2,2); // 
         painelSC.setLayout(grid3);
         String textBotoes3[]={"=","Limpar(c)"};
 
