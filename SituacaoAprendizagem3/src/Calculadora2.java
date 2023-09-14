@@ -49,15 +49,6 @@ public class Calculadora2 {
         janela1.setVisible(true); // deixando a janela visivel
     }
 
-    // Função para avaliar expressões usando JavaScript
-    private static String evaluateExpression(String expression) {
-        try {
-            return String.valueOf(new javax.script.ScriptEngineManager()
-                    .getEngineByName("JavaScript")
-                    .eval(expression));
-        } catch (Exception e) {
-            return "Erro";
-        }
-    }
+    
 
     
