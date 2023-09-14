@@ -60,8 +60,4 @@ public class Calculadora2 {
         }
     }
 
-    // Método principal
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Calculadora2()); // Inicia a aplicação Swing
-    }
-}
+    
