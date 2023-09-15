@@ -48,6 +48,8 @@ public class Calculadora2 {
 
         janela1.setVisible(true); // deixando a janela visivel
     }
+}
+
 
     
 

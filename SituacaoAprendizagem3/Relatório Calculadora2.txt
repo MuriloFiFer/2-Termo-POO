@@ -1,0 +1,25 @@
+Relatório do Código Calculadora2:
+
+Este código Java cria uma calculadora simples com interface gráfica usando a biblioteca Swing. Aqui estão os principais componentes e funcionalidades do código:
+
+1. JFrame: Uma janela de interface gráfica é criada com o título "Calculadora Científica". A janela é configurada para fechar quando o botão de fechar é pressionado.
+
+2. JTextField: Um campo de texto é adicionado à janela para exibir a entrada/saída da calculadora.
+
+3. Botões: Uma matriz de botões é definida com rótulos para números, operadores e funções trigonométricas.
+
+4. Event Listeners: Um ActionListener é adicionado a cada botão. Quando um botão é clicado, a ação correspondente é executada.
+
+5. Ação do Botão "C": Quando o botão "C" é clicado, o campo de texto é limpo.
+
+6. Outros Botões: Quando outros botões são clicados, seus nomes são adicionados ao campo de texto.
+
+7. Método `evaluateExpression`: Um método privado é definido para avaliar expressões usando JavaScript. Isso é feito usando a classe `ScriptEngineManager` da biblioteca javax.script.
+
+8. Janela Visível: A janela é configurada como visível para exibir a calculadora.
+
+O código cria uma interface gráfica simples de calculadora que permite a entrada de expressões matemáticas e a avaliação das mesmas.
+
+Usar o `FlowLayout` neste código da calculadora é vantajoso devido à sua simplicidade e previsibilidade. O `FlowLayout` organiza os componentes na ordem em que são adicionados, tornando fácil posicionar os botões e se ajustar ao redimensionamento da janela. Isso simplifica o desenvolvimento e a manutenção da interface do usuário.
+
+Neste projeto foi necessário pesquisas na Internet para complementar os conhecimentos adquirido em aula.
