@@ -42,6 +42,10 @@ public class Calculadora2 {
                         display.setText(currentText + buttonText); // Adiciona o texto do botão ao campo de texto
                     }
                 }
+
+                private String evaluateExpression(String currentText) {
+                    return null;
+                }
             });
             janela1.add(button); // Adicionndoa o botão à janela
         }
