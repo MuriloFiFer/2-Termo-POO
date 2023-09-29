@@ -22,9 +22,7 @@ public class Exercicio5CardLayout extends JFrame {
         card1.add(new JLabel("Seja Bem Vindo ao Quiz"));
         JButton but1 = new JButton("Start");
         card1.add(but1);//criei o botão e coloquei a ação
-        but1.addActionListener(e->{
-            cl.next(mainPanel);
-        });
+        
         mainPanel.add(card1);//add card ao painel principal
         // card2 - Primeira Pergunta
         JPanel card2 = new JPanel();
@@ -33,14 +31,6 @@ public class Exercicio5CardLayout extends JFrame {
         card2.add(resposta1);
         JButton but2 = new JButton("Next");
         card2.add(but2);//criei o botão e coloquei a ação
-        but2.addActionListener(e->{
-            //verificar a resposta
-            if(resposta1.getText().toLowerCase().equals("brasil")){
-               pontuacao++;
-            }
-            cl.next(mainPanel);
-            resposta1.setText("");
-        });
         mainPanel.add(card2);//add card ao painel principal
         // card3 - Primeira Pergunta
         JPanel card3 = new JPanel();
@@ -49,28 +39,47 @@ public class Exercicio5CardLayout extends JFrame {
         card3.add(resposta2);
         JButton but3 = new JButton("Next");
         card3.add(but3);//criei o botão e coloquei a ação
-        but3.addActionListener(e->{
-            //verificar a resposta
-            if(resposta2.getText().toLowerCase().equals("méxico")){
-               pontuacao++;
-            }
-            cl.next(mainPanel);
-            resposta2.setText("");
-        });
+        
         mainPanel.add(card3);//add card ao painel principal
         // card4 - Tela de Start
         JPanel card4 = new JPanel();
         card4.add(new JLabel("Obrigado por Jogar"));
-        JLabel pontucaoaFinal = new JLabel(" Sua pontuação Foi de "+pontuacao);
-        card4.add(pontucaoaFinal);
+        JLabel pontucaoFinal = new JLabel("");
+        card4.add(pontucaoFinal);
         JButton but4 = new JButton("Jogar Novamente");
         card4.add(but4);//criei o botão e coloquei a ação
+        mainPanel.add(card4);//add card ao painel principal
+        //set do Frame
+        this.setDefaultCloseOperation(2);//definindo a função do X do Frame
+        this.setBounds(100, 100, 300, 300);
+        this.setVisible(true);
+
+        ///ações do botão
+        but1.addActionListener(e->{
+            cl.next(mainPanel);
+        });
+        but2.addActionListener(e->{
+            //verificar a resposta
+            if(resposta1.getText().toLowerCase().equals("brasil")){
+                pontuacao++;
+            }
+            cl.next(mainPanel);
+            resposta1.setText("");
+        });
+        but3.addActionListener(e->{
+            //verificar a resposta
+            if(resposta2.getText().toLowerCase().equals("méxico")){
+                pontuacao++;
+            }
+            cl.next(mainPanel);
+            resposta2.setText("");
+            pontucaoFinal.setText("Sua pontuação Foi de "+pontuacao);
+            
+            
+        });
         but4.addActionListener(e->{
             cl.first(mainPanel);
             pontuacao=0;
         });
-        mainPanel.add(card4);//add card ao painel principal
-
-
     }
 }
