@@ -137,7 +137,9 @@ public class TodoList extends JFrame {
             tasks.remove(selectedIndex);
             updateTaskList();
         } else if (option == JOptionPane.NO_OPTION) {
-            // O usuário escolheu não excluir a tarefa, não é necessário fazer nada aqui
+            // O usuário escolheu não excluir a tarefa, então exibe a janela de diálogo personalizada
+              CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
+            customDialog.setVisible(true);
         } else {
             // Exibe a janela de diálogo personalizada com um temporizador para fechar
             CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
