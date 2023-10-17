@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TodoList extends JFrame {
     // atributos
@@ -17,13 +22,14 @@ public class TodoList extends JFrame {
     private JComboBox<String> filterComboBox;
     private JButton clearCompletedButton;
     private List<Task> tasks;
+    private Timer doubleClickTimer;
 
     // construtor
     public TodoList() {
         // Configuração da janela principal (JFrame)
         super("To-Do List App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(100, 100, 500, 500);
+        this.setBounds(100, 100, 450, 300);
 
         // Inicializa o painel principal
         mainPanel = new JPanel();
@@ -103,9 +109,40 @@ public class TodoList extends JFrame {
 
         // Exibe a janela
         run();
+
+        taskInputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    addTask();
+                }
+            }
+        });
+         doubleClickTimer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = taskList.getSelectedIndex();
+                if (selectedIndex >= 0 && selectedIndex < tasks.size()) {
+                    Task task = tasks.get(selectedIndex);
+                    if (!task.isDone()) {
+                        task.setDone(true);
+                        updateTaskList();
+                    }
+                }
+            }
+        });
+        doubleClickTimer.setRepeats(false);
+
+        taskList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    doubleClickTimer.restart();
+                }
+            }
+        });
+        
     }
-
-
 
     // métodos (crud)
     private void addTask() {
@@ -119,10 +156,13 @@ public class TodoList extends JFrame {
             // Atualize a lista de tarefas e limpe o campo de entrada
             updateTaskList();
             taskInputField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Digite uma Tarefa", "Campo Vazio", JOptionPane.WARNING_MESSAGE);
+            // Mensagem caso n digite nada na tarefa
         }
     }
 
-    private void deleteTask() {
+      private void deleteTask() {
         int selectedIndex = taskList.getSelectedIndex();
 
         if (selectedIndex == -1) {
@@ -137,15 +177,46 @@ public class TodoList extends JFrame {
             tasks.remove(selectedIndex);
             updateTaskList();
         } else if (option == JOptionPane.NO_OPTION) {
+            CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
+            customDialog.setVisible(true);
             // O usuário escolheu não excluir a tarefa, não é necessário fazer nada aqui
         } else {
             // Exibe a janela de diálogo personalizada com um temporizador para fechar
-            CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
-            customDialog.setVisible(true);
         }
     }
     
     
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CustomDialog extends JDialog {
+    public CustomDialog(JFrame parent, String message, int delay) {
+        super(parent, "Confirmação de Exclusão", true);
+        
+        // Crie uma etiqueta com a mensagem
+        JLabel label = new JLabel(message);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        add(label, BorderLayout.CENTER);
+
+        // Crie um temporizador para fechar a janela após um atraso
+        Timer timer = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Fecha a janela de diálogo
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        pack();
+        setLocationRelativeTo(parent);
+    }
+}
 
 
     private void markTaskDone() {
@@ -163,7 +234,8 @@ public class TodoList extends JFrame {
         String filter = (String) filterComboBox.getSelectedItem();
         listModel.clear();
         for (Task task : tasks) {
-            if (filter.equals("Todas") || (filter.equals("Ativas") && !task.isDone()) || (filter.equals("Concluídas") && task.isDone())) {
+            if (filter.equals("Todas") || (filter.equals("Ativas") && !task.isDone())
+                    || (filter.equals("Concluídas") && task.isDone())) {
                 listModel.addElement(task.getDescription() + (task.isDone() ? " (Concluída)" : ""));
             }
         }
