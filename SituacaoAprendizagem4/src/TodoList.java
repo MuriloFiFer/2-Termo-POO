@@ -118,6 +118,8 @@ public class TodoList extends JFrame {
                 }
             }
         });
+
+        //evento double click
          doubleClickTimer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,10 +179,10 @@ public class TodoList extends JFrame {
             // O usuário confirmou a exclusão
             tasks.remove(selectedIndex);
             updateTaskList();
-        } else if (option == JOptionPane.NO_OPTION) {
+        } else if (option == JOptionPane.NO_OPTION) { //adiciona evento de menssagem com delay
             CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
             customDialog.setVisible(true);
-            // O usuário escolheu não excluir a tarefa, não é necessário fazer nada aqui
+           
         } else {
             // Exibe a janela de diálogo personalizada com um temporizador para fechar
              CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
@@ -189,7 +191,7 @@ public class TodoList extends JFrame {
         }
     }
 
-    //menssagem de exclusã, conta um tempo para aparecer a menssagem;
+    //menssagem de exclusão, conta um tempo para aparecer a menssagem;
     public class CustomDialog extends JDialog {
         public CustomDialog(JFrame parent, String message, int delay) {
             super(parent, "Confirmação de Exclusão", true);
