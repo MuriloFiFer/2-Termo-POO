@@ -169,7 +169,7 @@ public class TodoList extends JFrame {
         int selectedIndex = taskList.getSelectedIndex();
 
         if (selectedIndex == -1) {
-            // Nenhum item selecionado para excluir
+            // Nenhum item selecionado para excluir,nada acontece
             return;
         }
 
@@ -180,23 +180,25 @@ public class TodoList extends JFrame {
             tasks.remove(selectedIndex);
             updateTaskList();
         } else if (option == JOptionPane.NO_OPTION) { //adiciona evento de menssagem com delay
-            CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
+            CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (1 segundos)
             customDialog.setVisible(true);
            
         } else {
             // Exibe a janela de diálogo personalizada com um temporizador para fechar
-             CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
+             CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (1 segundos)
             customDialog.setVisible(true);
             
         }
     }
 
+
+
     //menssagem de exclusão, conta um tempo para aparecer a menssagem;
     public class CustomDialog extends JDialog {
         public CustomDialog(JFrame parent, String message, int delay) {
-            super(parent, "Confirmação de Exclusão", true);
+            super(parent, "Cancelado", true);
             
-            // Cria uma etiqueta com a mensagem
+            // Cria uma etiqueta com a mensagem no frame
             JLabel label = new JLabel(message);
             label.setHorizontalAlignment(SwingConstants.CENTER);
             add(label, BorderLayout.CENTER);
