@@ -189,16 +189,17 @@ public class TodoList extends JFrame {
         }
     }
 
+    //
     public class CustomDialog extends JDialog {
         public CustomDialog(JFrame parent, String message, int delay) {
             super(parent, "Confirmação de Exclusão", true);
             
-            // Crie uma etiqueta com a mensagem
+            // Cria uma etiqueta com a mensagem
             JLabel label = new JLabel(message);
             label.setHorizontalAlignment(SwingConstants.CENTER);
             add(label, BorderLayout.CENTER);
     
-            // Crie um temporizador para fechar a janela após um atraso
+            // Cria um temporizador para fechar a janela após um atraso
             Timer timer = new Timer(delay, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
