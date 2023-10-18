@@ -183,6 +183,9 @@ public class TodoList extends JFrame {
             // O usuário escolheu não excluir a tarefa, não é necessário fazer nada aqui
         } else {
             // Exibe a janela de diálogo personalizada com um temporizador para fechar
+             CustomDialog customDialog = new CustomDialog(this, "Exclusão cancelada", 1000); // Tempo em milissegundos (5 segundos)
+            customDialog.setVisible(true);
+            
         }
     }
 
