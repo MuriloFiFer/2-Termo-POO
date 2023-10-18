@@ -189,7 +189,7 @@ public class TodoList extends JFrame {
         }
     }
 
-    //
+    //menssagem de exclusã, conta um tempo para aparecer a menssagem;
     public class CustomDialog extends JDialog {
         public CustomDialog(JFrame parent, String message, int delay) {
             super(parent, "Confirmação de Exclusão", true);
