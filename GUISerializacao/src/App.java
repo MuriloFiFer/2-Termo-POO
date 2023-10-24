@@ -1,7 +1,9 @@
 public class App {
     public static void main(String[] args) throws Exception {
         
-        new Pessoa();
-        
+        new CadastroUsuarios().run();       
     }
+
 }
+
+
