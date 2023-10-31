@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\DevNoturnoB\\Downloads\\postgresql-42.6.0 (1).jar"
+    ],
+    "java.project.sourcePaths": [
+        "JDBCT/src",
+        "JDBCMavenTeste/src/main/java/app"
+    ]
+}
