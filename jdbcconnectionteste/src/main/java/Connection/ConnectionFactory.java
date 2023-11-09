@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
     //atributos de conexão
-private static final String URL = "jdbc:postgresql://localhost:5432/postgres";  // "filnal", arquivo não pode ser alterado  "private"m arquivo independente.
+private static final String URL = "jdbc:postgresql://localhost:5432/postgres";  // "final", arquivo não pode ser alterado  "private"m arquivo independente.
 private static final String USUARIO = "postgres";
 private static final String SENHA = "postgres";
     //métodos de conexão
