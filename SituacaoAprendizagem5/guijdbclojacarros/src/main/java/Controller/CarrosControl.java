@@ -37,6 +37,11 @@ public class CarrosControl {
 
     // Método para cadastrar um novo carro no banco de dados
     public void cadastrar(String marca, String modelo, String ano, String placa, String valor) {
+
+        //exemplo professor        
+        int valorInt = Integer.parseInt(valor);
+        //fazer verificações aqui
+
         new CarrosDAO().cadastrar(marca, modelo, ano, placa, valor);
         // Chama o método de cadastro no banco de dados
         atualizarTabela(); // Atualiza a tabela de exibição após o cadastro

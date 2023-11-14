@@ -15,6 +15,10 @@ public class JanelaPrincipal extends JFrame {
         CarrosPainel tab1 = new CarrosPainel();
         jTPane.add("Carros", tab1);
         setBounds(100, 100, 600, 600);
+        ClientesPainel tab2 = new ClientesPainel();
+        jTPane.add("Clientes", tab2);
+        setBounds(100, 100 ,600, 600);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
