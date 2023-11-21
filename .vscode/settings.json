@@ -5,7 +5,9 @@
     ],
     "java.project.sourcePaths": [
         "JDBCT/src",
-        "JDBCMavenTeste/src/main/java/app"
+        "JDBCMavenTeste/src/main/java/app",
+        "GUIJDBCLojaCarrosNo/src/main/java/app",
+        "GUIJDBCLojaCarros/src/main/java/app"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
 }
