@@ -1,4 +1,4 @@
-package main.java.Controller;
+package Controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import main.java.Connection.ClientesDAO;
-import main.java.Model.Clientes;
+import Connection.ClientesDAO;
+import Model.Clientes;
 
 public class ClientesControl {
 

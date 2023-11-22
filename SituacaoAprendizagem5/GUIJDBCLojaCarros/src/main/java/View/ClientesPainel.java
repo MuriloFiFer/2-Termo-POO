@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import main.java.Connection.ClientesDAO;
-import main.java.Controller.ClientesControl;
+import Connection.ClientesDAO;
+import Controller.ClientesControl;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import main.java.Model.Clientes;
+import Model.Clientes;
 
 public class ClientesPainel extends JPanel {
     // Atributos

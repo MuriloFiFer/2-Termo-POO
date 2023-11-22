@@ -1,4 +1,4 @@
-package main.java.View;
+package View;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import main.java.Connection.CarrosDAO;
-import main.java.Controller.CarrosControl;
+import Connection.CarrosDAO;
+import Controller.CarrosControl;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import main.java.Model.Carros;
+import Model.Carros;
 
 public class CarrosPainel extends JPanel {
     // Atributos

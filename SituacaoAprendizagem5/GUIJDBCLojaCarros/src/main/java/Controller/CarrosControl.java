@@ -1,4 +1,4 @@
-package main.java.Controller;
+package Controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import main.java.Connection.CarrosDAO;
-import main.java.Model.Carros;
+import Connection.CarrosDAO;
+import Model.Carros;
 
 public class CarrosControl {
 

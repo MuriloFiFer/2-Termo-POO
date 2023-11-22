@@ -1,4 +1,4 @@
-package main.java.Connection;
+package Connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.Model.Carros;
+import Model.Carros;
 
 public class CarrosDAO {
 

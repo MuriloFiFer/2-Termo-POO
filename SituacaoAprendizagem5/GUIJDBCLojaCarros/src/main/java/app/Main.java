@@ -1,6 +1,6 @@
-package main.java.app;
+package app;
 
-import main.java.View.JanelaPrincipal;
+import View.JanelaPrincipal;
 
 public class Main {
     public static void main(String[] args) {
