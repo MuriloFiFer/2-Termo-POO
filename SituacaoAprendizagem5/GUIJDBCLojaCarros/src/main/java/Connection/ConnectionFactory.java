@@ -1,4 +1,4 @@
-package main.java.Connection;
+package Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
     // Atributos
-    private static final String url = "jdbc:postgresql://localhost:5432/ezequielzz";
+    private static final String url = "jdbc:postgresql://localhost:5432/murilo";
     private static final String usuario = "postgres"; // Nome do ADM do banco
     private static final String senha = "postgres"; // Senha do ADM do banco
 
