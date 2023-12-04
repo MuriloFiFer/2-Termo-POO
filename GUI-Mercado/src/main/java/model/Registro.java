@@ -2,17 +2,18 @@ package Model;
 
 public class Registro {
     private int ValorTotal;
-    private int quantiItem;
     private String Vip;
     private String dinheiro;
     private String cartao;
 
-    public Registro(int valorTotal, int quantiItem, String vip, String dinheiro, String cartao) {
+    public Registro(int valorTotal, String vip, String dinheiro, String cartao) {
         ValorTotal = valorTotal;
-        this.quantiItem = quantiItem;
         Vip = vip;
         this.dinheiro = dinheiro;
         this.cartao = cartao;
+    }
+
+    public Registro(String string, String string2, int int1) {
     }
 
     public int getValorTotal() {
@@ -21,14 +22,6 @@ public class Registro {
 
     public void setValorTotal(int valorTotal) {
         ValorTotal = valorTotal;
-    }
-
-    public int getQuantiItem() {
-        return quantiItem;
-    }
-
-    public void setQuantiItem(int quantiItem) {
-        this.quantiItem = quantiItem;
     }
 
     public String getVip() {
@@ -54,5 +47,4 @@ public class Registro {
     public void setCartao(String cartao) {
         this.cartao = cartao;
     }
-
 }

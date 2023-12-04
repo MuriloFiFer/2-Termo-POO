@@ -28,7 +28,7 @@ public class JanelaPrincipal extends JFrame {
     //    PainelRegisVenda tab3 = new PainelRegisVenda();
 
         jTPane.add("Venda", tab1);
-        jTPane.add("Estoque", tab2);
+        // jTPane.add("Estoque", tab2);
         // jTPane.add("Registro", tab3);
         setBounds(100, 100, 600, 600);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
