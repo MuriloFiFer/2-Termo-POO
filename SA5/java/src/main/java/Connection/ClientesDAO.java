@@ -1,4 +1,4 @@
-package Connection;
+package app.Connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,22 +10,22 @@ import java.util.List;
 
 import Model.Clientes;
 
+/**
+ * ClientesDAO
+ */
 public class ClientesDAO {
-
-    // Atributos
+    // atributo
     private Connection connection;
     private List<Clientes> clientes;
 
-    // Construtor
+    // construtor
     public ClientesDAO() {
         this.connection = ConnectionFactory.getConnection();
     }
 
-    // Métodos do CRUD
     // criar Tabela
     public void criaTabela() {
-        String sql = "CREATE TABLE IF NOT EXISTS clientes_lojacarros2 (NOME VARCHAR(255),IDADE VARCHAR(255),SEXO VARCHAR(255),RG VARCHAR(255),CPF VARCHAR(255) PRIMARY KEY)";
-
+        String sql = "CREATE TABLE IF NOT EXISTS clientes_lojaclientes (CPF VARCHAR(11) PRIMARY KEY, NOME VARCHAR(255))";
         try (Statement stmt = this.connection.createStatement()) {
             stmt.execute(sql);
             System.out.println("Tabela criada com sucesso.");
@@ -46,21 +46,18 @@ public class ClientesDAO {
         clientes = new ArrayList<>();
         // Cria uma lista para armazenar os clientes recuperados do banco de dados
         try {
-            stmt = connection.prepareStatement("SELECT * FROM clientes_lojacarros2");
+            stmt = connection.prepareStatement("SELECT * FROM clientes_lojaclientes");
             // Prepara a consulta SQL para selecionar todos os registros da tabela
             rs = stmt.executeQuery();
             // Executa a consulta e armazena os resultados no ResultSet
             while (rs.next()) {
-                // Para cada registro no ResultSet, cria um objeto clientes com os valores do
+                // Para cada registro no ResultSet, cria um objeto Clientes com os valores do
                 // registro
 
                 Clientes cliente = new Clientes(
-                        rs.getString("nome"),
-                        rs.getString("idade"),
-                        rs.getString("sexo"),
-                        rs.getString("rg"),
-                        rs.getString("cpf"));
-                clientes.add(cliente); // Adiciona o objeto clientes à lista de clientes
+                        rs.getInt("cpf"),
+                        rs.getString("nome"));
+                clientes.add(cliente); // Adiciona o objeto Clientes à lista de clientes
             }
         } catch (SQLException ex) {
             System.out.println(ex); // Em caso de erro durante a consulta, imprime o erro
@@ -72,21 +69,18 @@ public class ClientesDAO {
         return clientes; // Retorna a lista de clientes recuperados do banco de dados
     }
 
-    // Cadastrar Carro no banco
-    public void cadastrar(String nome, String idade, String sexo, String rg, String cpf) {
+    // Cadastrar Cliente no banco
+    public void cadastrar(int cpf, String nome) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para cadastrar na tabela
-        String sql = "INSERT INTO clientes_lojacarros2 (nome, idade, sexo, rg, cpf) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes_lojaclientes (cpf, nome) VALUES (?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, idade);
-            stmt.setString(3, sexo);
-            stmt.setString(4, rg);
-            stmt.setString(5, cpf);
+
+            stmt.setInt(1, cpf);
+            stmt.setString(2, nome);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir dados no banco de dados.", e);
         } finally {
@@ -95,18 +89,15 @@ public class ClientesDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(String nome, String idade, String sexo, String rg, String cpf) {
+    public void atualizar(int cpf, String nome) {
         PreparedStatement stmt = null;
-        // Define a instrução SQL parametrizada para atualizar dados pela placa
-        String sql = "UPDATE clientes_lojacarros2 SET nome = ?, idade = ?, sexo = ?, rg = ?, WHERE cpf = ?";
+        // Define a instrução SQL parametrizada para atualizar dados pela cpf
+        String sql = "UPDATE clientes_lojaclientes SET nome = ? WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);
-            stmt.setString(2, idade);
-            stmt.setString(3, sexo);
-            stmt.setString(4, rg);
-            // placa é chave primaria não pode ser alterada.
-            stmt.setString(5, cpf);
+            // cpf é chave primaria não pode ser alterada.
+            stmt.setInt(2, cpf);
             stmt.executeUpdate();
             System.out.println("Dados atualizados com sucesso");
         } catch (SQLException e) {
@@ -117,20 +108,20 @@ public class ClientesDAO {
     }
 
     // Apagar dados do banco
-    public void apagar(String cpf) {
+    public void apagar(int cpf) {
         PreparedStatement stmt = null;
-        // Define a instrução SQL parametrizada para apagar dados pela placa
-        String sql = "DELETE FROM clientes_lojacarros2 WHERE cpf = ?";
+        // Define a instrução SQL parametrizada para apagar dados pela cpf
+        String sql = "DELETE FROM clientes_lojaclientes WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cpf);
+            stmt.setInt(1, cpf);
             stmt.executeUpdate(); // Executa a instrução SQL
             System.out.println("Dado apagado com sucesso");
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao apagar dados no banco de dados.", e);
         } finally {
+
             ConnectionFactory.closeConnection(connection, stmt);
         }
     }
-
 }

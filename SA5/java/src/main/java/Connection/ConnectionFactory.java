@@ -1,4 +1,4 @@
-package Connection;
+package app.Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    // Atributos
-    private static final String url = "jdbc:postgresql://localhost:5432/murilo";
+    // atributos
+    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
     private static final String usuario = "postgres"; // Nome do ADM do banco
     private static final String senha = "postgres"; // Senha do ADM do banco
+    // Método para obter uma conexão com o banco de dados
 
-    // Métodos (getConnection e CloseConnection)
     public static Connection getConnection() {
         try {
             return DriverManager.getConnection(url, usuario, senha);
@@ -45,8 +45,7 @@ public class ConnectionFactory {
     }
 
     // Método para fechar a conexão, o objeto PreparedStatement e o ResultSet
-    public static void closeConnection(Connection connection, PreparedStatement stmt,
-            ResultSet rs) {
+    public static void closeConnection(Connection connection, PreparedStatement stmt, ResultSet rs) {
         closeConnection(connection, stmt);
         try {
             if (rs != null) {
