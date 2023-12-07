@@ -1,26 +1,26 @@
 package Model;
 
 public class Registro {
-    private int ValorTotal;
+    private String ValorTotal;
     private String Vip;
     private String dinheiro;
     private String cartao;
 
-    public Registro(int valorTotal, String vip, String dinheiro, String cartao) {
+    public Registro(String valorTotal, String vip, String dinheiro, String cartao) {
         ValorTotal = valorTotal;
         Vip = vip;
         this.dinheiro = dinheiro;
         this.cartao = cartao;
     }
 
-    public Registro(String string, String string2, int int1) {
+    public Registro(String string, String string2, String String1) {
     }
 
-    public int getValorTotal() {
+    public String getValorTotal() {
         return ValorTotal;
     }
 
-    public void setValorTotal(int valorTotal) {
+    public void setValorTotal(String valorTotal) {
         ValorTotal = valorTotal;
     }
 

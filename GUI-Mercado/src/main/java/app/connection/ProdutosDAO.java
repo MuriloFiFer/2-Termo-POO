@@ -55,11 +55,11 @@ public class ProdutosDAO {
                 // registro
 
                 Produtos produto = new Produtos(
-                        rs.getInt("promocao"),
-                        rs.getInt("cod_barra"),
-                        rs.getInt("quanti_produto"),
+                        rs.getString("promocao"),
+                        rs.getString("cod_barra"),
+                        rs.getString("quanti_produto"),
                         rs.getString("nome_produto"),
-                        rs.getInt("valor"));
+                        rs.getString("valor"));
                 produtos.add(produto); // Adiciona o objeto Produtos à lista de produtos
             }
         } catch (SQLException ex) {
@@ -73,28 +73,28 @@ public class ProdutosDAO {
     }
 
     // Cadastrar Produto no banco
-    public void cadastrar(int promocao, int codBarra, int quantiProduto, String nomeProduto, int valor) {
+    public void cadastrar(String promocao, String codBarra, String quantiProduto, String nomeProduto, String valor) {
         try {
-            int anoNumerico = promocao;
+            String anoNumerico = promocao;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(" A promoção deve ser numérica");
         }
         try {
-            int anoNumerico = valor;
+            String anoNumerico = valor;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(" O valor deve ser numérico");
         }
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para cadastrar na tabela
-        String sql = "INSERT INTO produtos_lojaprodutos (promocao, cod_barra, quanti_produto, nome_produto, valor) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT StringO produtos_lojaprodutos (promocao, cod_barra, quanti_produto, nome_produto, valor) VALUES (?, ?, ?, ?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
 
-            stmt.setInt(1, promocao);
-            stmt.setInt(2, codBarra);
-            stmt.setInt(3, quantiProduto);
+            stmt.setString(1, promocao);
+            stmt.setString(2, codBarra);
+            stmt.setString(3, quantiProduto);
             stmt.setString(4, nomeProduto);
-            stmt.setInt(5, valor);
+            stmt.setString(5, valor);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
         } catch (SQLException e) {
@@ -105,14 +105,14 @@ public class ProdutosDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(int promocao, int codBarra, int quantiProduto, String nomeProduto, int valor) {
+    public void atualizar(String promocao, String codBarra, String quantiProduto, String nomeProduto, String valor) {
         try {
-            int anoNumerico = promocao;
+            String anoNumerico = promocao;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(" A promoção deve ser numérica");
         }
         try {
-            int anoNumerico = valor;
+            String anoNumerico = valor;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(" O valor deve ser numérico");
         }
@@ -122,10 +122,10 @@ public class ProdutosDAO {
         String sql = "UPDATE produtos_lojaprodutos SET promocao = ?, cod_barra = ?, quanti_produto = ?, valor = ? WHERE nome_produto = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, promocao);
-            stmt.setInt(2, codBarra);
-            stmt.setInt(3, quantiProduto);
-            stmt.setInt(4, valor);
+            stmt.setString(1, promocao);
+            stmt.setString(2, codBarra);
+            stmt.setString(3, quantiProduto);
+            stmt.setString(4, valor);
             // nomeProduto é chave primária, não pode ser alterada.
             stmt.setString(5, nomeProduto);
             stmt.executeUpdate();
@@ -138,13 +138,13 @@ public class ProdutosDAO {
     }
 
     // Apagar dados do banco
-    public void apagar(int codBarra) {
+    public void apagar(String codBarra) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para apagar dados pelo nomeProduto
         String sql = "DELETE FROM produtos_lojaprodutos WHERE nome_produto = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, codBarra);
+            stmt.setString(1, codBarra);
             stmt.executeUpdate(); // Executa a instrução SQL
             System.out.println("Dado apagado com sucesso");
         } catch (SQLException e) {

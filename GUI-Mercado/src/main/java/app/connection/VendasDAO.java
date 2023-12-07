@@ -49,7 +49,7 @@ public class VendasDAO {
                 Registro registro = new Registro(
                         rs.getString("produtos"),
                         rs.getString("Cliente"),
-                        rs.getInt("ValorVenda"));
+                        rs.getString("ValorVenda"));
                 registros.add(registro);
             }
         } catch (SQLException ex) {
@@ -61,14 +61,14 @@ public class VendasDAO {
     }
 
     // Cadastrar Registro no banco
-    public void cadastrar(String produtos, String cliente, int valorVenda) {
+    public void cadastrar(String produtos, String cliente, String valorVenda) {
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO vendas_lojavendas (produtos, Cliente, ValorVenda) VALUES (?, ?, ?)";
+        String sql = "INSERT StringO vendas_lojavendas (produtos, Cliente, ValorVenda) VALUES (?, ?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, produtos);
             stmt.setString(2, cliente);
-            stmt.setInt(3, valorVenda);
+            stmt.setString(3, valorVenda);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
         } catch (SQLException e) {
@@ -79,13 +79,13 @@ public class VendasDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(String produtos, String cliente, int valorVenda) {
+    public void atualizar(String produtos, String cliente, String valorVenda) {
         PreparedStatement stmt = null;
         String sql = "UPDATE vendas_lojavendas SET Cliente = ?, ValorVenda = ? WHERE produtos = ?";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente);
-            stmt.setInt(2, valorVenda);
+            stmt.setString(2, valorVenda);
             stmt.setString(3, produtos);
             stmt.executeUpdate();
             System.out.println("Dados atualizados com sucesso");

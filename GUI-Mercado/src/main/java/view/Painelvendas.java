@@ -2,136 +2,73 @@ package View;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
-
 import Controller.ProdutoControl;
 import Model.Produtos;
 import app.Connection.ProdutosDAO;
 
-public class Painelvendas extends JPanel {
+public class PainelVendas extends JPanel {
 
-    private JTextField cpfField;
-    private JTextField nomeField;
-    private JButton cadastrar;
-    private JButton editar;
+   
+   private JTextField codigoField;
+   
+
     private JButton apagar;
+    private JButton adicionar;
+    private JButton  validar;
     private JTable table;
     private DefaultTableModel tableModel;
-    private int linhaSelecionada;
-    private List<Produtos> produtos; // Assuming Produtos is an array type, adjust as needed
+    private List<Produtos> produtos;
+    private JTextField cpfField;
 
-    public Painelvendas() {
-        // entrada de dados
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Cadastro Produtos"));
 
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(2, 2));
-        inputPanel.add(new JLabel("CPF"));
-        cpfField = new JTextField(20);
-        inputPanel.add(cpfField);
-        inputPanel.add(new JLabel("Nome"));
-        nomeField = new JTextField(20);
-        inputPanel.add(nomeField);
-        add(inputPanel);
-
-        JPanel botoes = new JPanel();
-        cadastrar = new JButton("Cadastrar");
-        editar = new JButton("Editar");
+    public PainelVendas() {
+        // Initialize components
+       
+        codigoField = new JTextField(10);
+        cpfField = new JTextField(10);
+        
         apagar = new JButton("Apagar");
-        botoes.add(cadastrar);
-        botoes.add(editar);
-        botoes.add(apagar);
-        add(botoes);
+        adicionar = new JButton("Adicionar");
+        validar = new JButton("Validar");
 
-        // tabela de produtos
-        JScrollPane jSPane = new JScrollPane();
-        add(jSPane);
-        tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "CPF", "Nome" });
+        tableModel = new DefaultTableModel();
         table = new JTable(tableModel);
-        jSPane.setViewportView(table);
 
-        // criar BD
-        new ProdutosDAO().criaTabela();
-        // atualizar tabela
-        atualizarTabela();
+        // Add components to the panel
+        
+        add(new JLabel("Cpf:"));
+        add(cpfField);
+        add(validar);
+        add(new JLabel("Código de Barra:"));
+        add(codigoField);
+        add(adicionar);
+        add(apagar);
+        add(new JScrollPane(table));  // Add a JScrollPane for the table
 
-        // tratamento de eventos construtor
-        table.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                linhaSelecionada = table.rowAtPoint(evt.getPoint());
-                if (linhaSelecionada != -1) {
-                    cpfField.setText((String) table.getValueAt(linhaSelecionada, 0));
-                    nomeField.setText((String) table.getValueAt(linhaSelecionada, 1));
-                }
-            }
-        });
+        // Action listeners for buttons
+        
 
-        ProdutoControl operacoes = new ProdutoControl(produtos, tableModel, table);
-        // Configura a ação do botão "cadastrar" para adicionar um novo registro no
-        // banco
-        // de dados
+        
 
-        cadastrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    operacoes.cadastrar(cpfField.getText(), nomeField.getText());
-                    cpfField.setText("");
-                    nomeField.setText("");
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(Painelvendas.this, "Erro ao cadastrar: O CPF deve ser numérico.",
-                            "Erro", JOptionPane.ERROR_MESSAGE);
-                } catch (IllegalArgumentException ex) {
-                    JOptionPane.showMessageDialog(Painelvendas.this, "Erro ao cadastrar: " + ex.getMessage(), "Erro",
-                            JOptionPane.ERROR_MESSAGE);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(Painelvendas.this, "Erro ao cadastrar: " + ex.getMessage(), "Erro",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-
-        // Configura a ação do botão "editar" para atualizar um registro no banco de dados
-        editar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    operacoes.atualizar(cpfField.getText(), nomeField.getText());
-                    cpfField.setText("");
-                    nomeField.setText("");
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(Painelvendas.this,
-                            "Erro ao atualizar dados no banco de dados: " + ex.getMessage(), "Erro",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-
-        // Configura a ação do botão "apagar" para excluir um registro no banco de dados
         apagar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    ProdutoControl operacoes = new ProdutoControl(produtos, tableModel, table);
                     int escolha = JOptionPane.showConfirmDialog(null, "Deseja Apagar?", "Confirmação",
                             JOptionPane.YES_NO_OPTION);
                     if (escolha == JOptionPane.YES_OPTION) {
-                        operacoes.apagar(cpfField.getText());
-                        cpfField.setText("");
-                        nomeField.setText("");
+                        operacoes.apagar(codigoField.getText());
+                        limparCampos();
+                        atualizarTabela();
                     } else {
                         JOptionPane.showMessageDialog(null, "Operação Cancelada!");
                     }
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(Painelvendas.this,
+                    JOptionPane.showMessageDialog(PainelVendas.this,
                             "Erro ao apagar dados no banco de dados: " + ex.getMessage(), "Erro",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -139,12 +76,22 @@ public class Painelvendas extends JPanel {
         });
     }
 
-    // Método para atualizar a tabela de exibição com dados do banco de dados
+    private void limparCampos() {
+        codigoField.setText("");
+        cpfField.setText("");
+    
+    }
+
     private void atualizarTabela() {
         tableModel.setRowCount(0);
         produtos = new ProdutosDAO().listarTodos();
         for (Produtos produto : produtos) {
-            tableModel.addRow(new Object[] { produto.getCpf(), produto.getNomeProduto() });
+            tableModel.addRow(new Object[]{
+                    produto.getCodBarra(),
+                    produto.getQuantiProduto(),
+                    produto.getNomeProduto(),
+                    produto.getValor()
+            });
         }
     }
 }

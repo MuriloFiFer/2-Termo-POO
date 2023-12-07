@@ -1,12 +1,12 @@
 package Model;
 
 public class Clientes {
-    private int cpf;
+    private String cpf;
     private String nome;
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     public String getNome() {
@@ -15,9 +15,12 @@ public class Clientes {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Clientes(int cpf, String nome) {
+    public Clientes(String cpf, String nome) {
         this.cpf = cpf;
         this.nome = nome;
+    }
+    public Object getNomeCliente() {
+        return null;
     }
     
 }

@@ -2,41 +2,35 @@ package Model;
 
 public class Produtos {
 
-    private int promocao;
-    private int codBarra;
-    private int quantiProduto;
+  
+    private String codBarra;
+    private String quantiProduto;
     private String nomeProduto;
-    private int valor;
+    private String valor;
 
-    public Produtos(int promocao, int codBarra, int quantiProduto, String nomeProduto, int valor) {
-        this.promocao = promocao;
+    public Produtos( String codBarra, String quantiProduto, String nomeProduto, String valor) {
+       
         this.codBarra = codBarra;
         this.quantiProduto = quantiProduto;
         this.nomeProduto = nomeProduto;
         this.valor = valor;
     }
 
-    public int getPromocao() {
-        return promocao;
-    }
+   
 
-    public void setPromocao(int promocao) {
-        this.promocao = promocao;
-    }
-
-    public int getCodBarra() {
+    public String getCodBarra() {
         return codBarra;
     }
 
-    public void setCodBarra(int codBarra) {
+    public void setCodBarra(String codBarra) {
         this.codBarra = codBarra;
     }
 
-    public int getQuantiProduto() {
+    public String getQuantiProduto() {
         return quantiProduto;
     }
 
-    public void setQuantiProduto(int quantiProduto) {
+    public void setQuantiProduto(String quantiProduto) {
         this.quantiProduto = quantiProduto;
     }
 
@@ -48,11 +42,11 @@ public class Produtos {
         this.nomeProduto = nomeProduto;
     }
 
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 

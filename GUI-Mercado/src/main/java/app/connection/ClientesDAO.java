@@ -10,6 +10,7 @@ import java.util.List;
 
 import Model.Clientes;
 
+
 /**
  * ClientesDAO
  */
@@ -55,7 +56,7 @@ public class ClientesDAO {
                 // registro
 
                 Clientes cliente = new Clientes(
-                        rs.getInt("cpf"),
+                        rs.getString("cpf"),
                         rs.getString("nome"));
                 clientes.add(cliente); // Adiciona o objeto Clientes à lista de clientes
             }
@@ -70,14 +71,14 @@ public class ClientesDAO {
     }
 
     // Cadastrar Cliente no banco
-    public void cadastrar(int cpf, String nome) {
+    public void cadastrar(String cpf, String nome) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para cadastrar na tabela
-        String sql = "INSERT INTO clientes_lojaclientes (cpf, nome) VALUES (?, ?)";
+        String sql = "INSERT StringO clientes_lojaclientes (cpf, nome) VALUES (?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
 
-            stmt.setInt(1, cpf);
+            stmt.setString(1, cpf);
             stmt.setString(2, nome);
             stmt.executeUpdate();
             System.out.println("Dados inseridos com sucesso");
@@ -89,7 +90,7 @@ public class ClientesDAO {
     }
 
     // Atualizar dados no banco
-    public void atualizar(int cpf, String nome) {
+    public void atualizar(String cpf, String nome) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para atualizar dados pela cpf
         String sql = "UPDATE clientes_lojaclientes SET nome = ? WHERE cpf = ?";
@@ -97,7 +98,7 @@ public class ClientesDAO {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);
             // cpf é chave primaria não pode ser alterada.
-            stmt.setInt(2, cpf);
+            stmt.setString(2, cpf);
             stmt.executeUpdate();
             System.out.println("Dados atualizados com sucesso");
         } catch (SQLException e) {
@@ -108,13 +109,13 @@ public class ClientesDAO {
     }
 
     // Apagar dados do banco
-    public void apagar(int cpf) {
+    public void apagar(String cpf) {
         PreparedStatement stmt = null;
         // Define a instrução SQL parametrizada para apagar dados pela cpf
         String sql = "DELETE FROM clientes_lojaclientes WHERE cpf = ?";
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, cpf);
+            stmt.setString(1, cpf);
             stmt.executeUpdate(); // Executa a instrução SQL
             System.out.println("Dado apagado com sucesso");
         } catch (SQLException e) {
