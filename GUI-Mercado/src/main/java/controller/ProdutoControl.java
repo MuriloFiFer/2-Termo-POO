@@ -10,9 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.Produtos;
 import app.Connection.ProdutosDAO;
-import Model.Produtos;
-
-import Model.Produtos;
 
 /**
  * ProdutoControll

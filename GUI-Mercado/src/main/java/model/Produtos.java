@@ -8,7 +8,7 @@ public class Produtos {
     private String nomeProduto;
     private String valor;
 
-    public Produtos( String codBarra, String quantiProduto, String nomeProduto, String valor) {
+    public Produtos( String codBarra, String quantiProduto, String nomeProduto, String valor, String string) {
        
         this.codBarra = codBarra;
         this.quantiProduto = quantiProduto;
