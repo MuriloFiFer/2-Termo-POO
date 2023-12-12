@@ -18,6 +18,11 @@ public class Produtos {
 
    
 
+    public Produtos(String string, String string2, String string3, String string4) {
+    }
+
+
+
     public String getCodBarra() {
         return codBarra;
     }

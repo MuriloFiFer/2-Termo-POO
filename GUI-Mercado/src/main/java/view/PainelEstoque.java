@@ -7,7 +7,9 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import Controller.ProdutoControl;
 import Model.Produtos;
+import app.Connection.ClientesDAO;
 import app.Connection.ProdutosDAO;
+import app.Connection.VendasDAO;
 
 public class PainelEstoque extends JPanel {
 
@@ -52,6 +54,9 @@ public class PainelEstoque extends JPanel {
         add(editar);
         add(apagar);
         add(new JScrollPane(table));  // Add a JScrollPane for the table
+        new ClientesDAO().criaTabela(); 
+        new ProdutosDAO().criaTabela(); 
+        new VendasDAO().criaTabela(); 
 
         // Action listeners for buttons
         cadastrar.addActionListener(new ActionListener() {
